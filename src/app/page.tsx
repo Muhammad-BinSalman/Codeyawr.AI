@@ -1,9 +1,12 @@
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import { useTRPC } from "@/trpc/client";
+import { caller } from "@/trpc/server";
+import { useQuery } from "@tanstack/react-query";
 
-export default function Home() {
+export default async function Home() {
+  const data = await caller.hello({text:"hello!!"});
   return (
-   <Button variant={"destructive"}>hello</Button>
+   <div>{JSON.stringify(data)}</div>
   );
 }
          
